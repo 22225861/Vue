@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+		通过点击按钮实现isCreate取反 给dataList添加数据，给which+1<br>
+		<button type="button" @click="handleClick()">click</button>
+		<div v-if="isCreated"> 说明isCreated为true</div>
+		<div v-else>说明isCreated为false</div>
+		
+		
+		<ul v-if="dataList.length">
+			<li v-for="data in dataList">{{data}}--通过v-for遍历数组之后显示数组元素</li> 
+		</ul>
+		<div v-else>
+			dataList为空
+		</div>
+		
+		
+		<div v-if="which==1">11111</div>
+		<div v-else-if="which==2">2222</div>
+		<div v-else>33333</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script>
+			let vm= new Vue({
+				el:'#app',
+				data:{
+					isCreated:false,
+					dataList:[],
+					which:1
+				},
+				methods:{
+					handleClick(){
+						this.isCreated=!this.isCreated
+						this.dataList=['show','2']
+						this.which+=1
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
