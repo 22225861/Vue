@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<!-- @click后面跟的函数无参数，可以省略括号，函数代码逻辑过于简单，可以直接写在@click后面 -->
+		<button type="button" @click="handleClick">click1</button>
+		<button type="button" @click="handleClick()">click2</button>
+		<button type="button" @click="isShow=!isShow">click3</button>
+		<div v-show="isShow">203151500</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script>
+			let vm= new Vue({
+				el:'#app',
+				data:{
+					isShow:false
+				},
+				methods:{
+					handleClick(){
+						this.isShow=!this.isShow
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
