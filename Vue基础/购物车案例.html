@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<!-- 全选框  发生改变时触发handleChange函数-->
+			<input type="checkbox" v-model="picked" @change="handleChange" />
+			<ul>
+				<li v-for="data in dataList">
+				<!-- 	双向绑定checkGroup数组,动态绑定value值 -->
+				<input type="checkbox" @change="handleLichange()" v-model="checkGroup" :value="data">
+				{{data}}
+				<button type="button" @click="del(data)">del</button>
+				{{data.number}}
+				<button type="button" @click="data.number++">add</button>
+				</li>
+			</ul>
+			{{checkGroup}}
+			<p>总金额计算：{{getSum()}}</p>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script>
+			let vm = new Vue({
+				el: '#app',
+				data: {
+					checkGroup: [],
+					dataList: [{
+							name: '商品1',
+							price: 10,
+							number: 1,
+							id: 1
+						},
+						{
+							name: '商品2',
+							price: 20,
+							number: 2,
+							id: 2
+						},
+						{
+							name: '商品1',
+							price: 30,
+							number: 3,
+							id: 3
+						},
+						{
+							name: '商品4',
+							price: 40,
+							number: 4,
+							id: 4
+						}
+					],
+					picked: false
+				},
+				methods: {
+					// 计算总金额
+					getSum() {
+						var sum = 0;
+						for (let i in this.checkGroup) {
+							sum += this.checkGroup[i].number * this.checkGroup[i].price
+						}
+						return sum;
+					},
+					// 全选框选不选中对checkGroup的影响
+					handleChange() {
+						if (this.picked) {
+							this.checkGroup = this.dataList
+						} else {
+							this.checkGroup = []
+						}
+					},
+					// 控制全选框选不选中
+					handleLichange() {
+						if (this.checkGroup.length === this.dataList.length) {
+							this.picked = true
+						} else {
+							this.picked = false
+						}
+					},
+					// 限定最小额度为1
+					del(data){
+						var number=data.number--
+						if (number===1) {
+							data.number=1;
+						}
+					}
+
+				}
+			})
+		</script>
+	</body>
+</html>

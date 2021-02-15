@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+		<input type="text" v-model="mytext" /><br>
+		{{mytext}}
+		
+		<input type="checkbox" v-model="isChecked" />记录用户名
+		<!-- 通过v-model绑定布尔值，来确定多选框有没有勾上 -->
+		
+		
+		设置v-model 双向绑定为数组时，需要设置value值
+		<p>你喜欢的运动
+		<input type="checkbox" v-model="checkgroup" value="运动"/>运动
+		<input type="checkbox" v-model="checkgroup" value="长跑"/>长跑
+		<input type="checkbox" v-model="checkgroup"value="滑冰" />滑冰
+		</p>
+		{{checkgroup}}<!-- 显示的是value值 -->
+		
+		<p>你喜欢的语言
+		<input type="radio" v-model="picked" value="日语"/>日语
+		<input type="radio" v-model="picked" value="汉语"/>汉语
+		<input type="radio" v-model="picked" value="英语" />英语
+		</p>
+		{{picked}}
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script>
+			let vm= new Vue({
+				el:'#app',
+				data:{
+				mytext:''	,
+				isChecked:true,
+				checkgroup:[],
+				picked:''
+				}
+			})
+		</script>
+	</body>
+</html>
