@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+		<input type="text"  @keyup.enter="handleKeyUp($event)"/>
+		<!-- @keyup 在输入框按键触发
+		@keyup.enter 按下回车键触发
+		@keyup.w 按下w键触发
+		@keyup.number (number为按键的键值) -->
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script>
+			let vm= new Vue({
+				el:'#app',
+				data:{
+					
+				},
+				methods:{
+					handleKeyUp(ev){
+						console.log('执行动作');
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
