@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			key值：跟踪每个节点的身份，从而重用和重新排序现有元素 理想的key值是每项
+			都有的且唯一的id，data.id
+		<ul>
+			<li v-for="(data,index) in dataList" key=''>{{index}}--{{data}}</li>
+		</ul>
+		<ul>
+			<li v-for="(data,key) in obj">{{key}}:{{data}}</li>
+		</ul>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script>
+			let vm= new Vue({
+				el:'#app',
+				data:{
+					dataList:['1','2','3'],
+					obj:{
+						name:'kervin',
+						age:100,
+						location:"dalian"
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
