@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<!-- @input 输入框数值改变触发 @change 失去焦点改变 -->
+		<input type="text" @input="handleInput()"  v-model="mytext"/>
+		<ul>
+			<li v-for="data in dataList">{{data}}</li>
+		</ul>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script>
+			let vm= new Vue({
+				el:'#app',
+				data:{
+					mytext:'',
+					dataList:['aaaa','bbbbb','abc','abc23','2345555'],
+					//list:['aaaa','bbbbb','abc','abc23','2345555']
+				},
+				methods:{
+					handleInput(){
+						//利用输入框的字符，过滤出包含字段的元素
+						//filter 过滤函数
+						var newlist=this.dataList.filter(item=>{
+							return item.indexOf(this.mytext)>-1
+						})
+						/* 
+						输入2时,显示abc23和2345555 接着输入0 无显示,导致dataList所有值都没有了
+					    简而言之,就是获取到输入值,dataList会把不符合条件的值删除掉
+					    解决办法:1.使用计算属性 2.创建数组副本，在副本上过滤
+						var newlist=this.list.filter(item=>{
+							return item.indexOf(this.mytext)>-1
+						})*/
+						this.dataList=newlist
+						
+					}
+					
+					
+				}
+			})
+		</script>
+	</body>
+</html>
