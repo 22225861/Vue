@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<!-- @click后面跟的函数无参数，可以省略括号，函数代码逻辑过于简单，可以直接写在@click后面 -->
+		<button type="button" @click="handleClick">click1</button>
+		<button type="button" @click="handleClick($event)">click2</button>
+		<button type="button" @click="isShow=!isShow">click3</button>
+		<div v-show="isShow">203151500</div>
+		
+		
+		<!-- @click.self 点击是自己的子节点不会触发，点击自己会触发 -->
+		<ul @click.self="handleULClick()">
+			<li @click.stop="handleLiClick($event)">11111</li><!-- @click.stop阻止冒泡行为 -->
+			<li @click="handleLiClick()">2222</li>
+			<li @click.once="handleLiClick()">33333</li><!-- @click.once 只执行一次 -->
+		</ul>
+		<a href="http://www.baidu.com" @click.prevent="handleChangePage()">跳转到百度</a>
+		<!-- @click.prevent 阻止默认行为（比如a链接下的跳转行为） -->
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script>
+			let vm= new Vue({
+				el:'#app',
+				data:{
+					isShow:false
+				},
+				methods:{
+					handleClick(ev){
+						console.log(ev);//ev就是事件对象
+						this.isShow=!this.isShow
+					},
+					handleULClick(){
+						
+						console.log('ul click');
+					},
+					handleLiClick(ev){
+						// ev.stopPropagation()//原生阻止冒泡
+						console.log('li click');
+					},
+					handleChangePage(){
+						console.log('handleChangePage');
+					}
+					
+				}
+			})
+		</script>
+	</body>
+</html>
