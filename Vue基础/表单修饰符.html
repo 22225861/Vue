@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+		<input type="text" v-model.lazy="mytext"  />
+		<!-- v-model.lazy 失去焦点同步一次 -->
+		{{mytext}}
+		<input type="text" v-model.trim="myusername"  />
+		<!-- v-model.trim 去掉首和尾空格 -->
+		{{myusername}}
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script>
+			let vm= new Vue({
+				el:'#app',
+				data:{
+					mytext:'',
+					myusername:''
+				}
+			})
+		</script>
+	</body>
+</html>

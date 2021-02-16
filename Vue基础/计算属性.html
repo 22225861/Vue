@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+		 {{getMyName}}
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script>
+			let vm= new Vue({
+				el:'#app',
+				data:{
+					myname:'staff'
+				},
+				computed:{
+					getMyName(){
+						 return this.myname.substring(0,1).toUpperCase()+this.myname.substring(1)
+					}
+					/*依赖的状态改变了。计算属性会重新计算一遍
+					 methods里面的函数 调用一次就执行一次
+					 computed里面的函数,调用一次后会把计算结果缓存,多次调用相同函数(不考虑参数改变情况下),只算调用了一次函数.
+					 计算属性会缓存*/
+				}
+			})
+		</script>
+	</body>
+</html>

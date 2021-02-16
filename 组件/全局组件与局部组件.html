@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+		<navbar></navbar>
+		<siderbar></siderbar>
+		<!-- 判断谁是谁的子组件，谁是谁的父组件
+		谁放在谁的组件模板中，谁就是谁的子组件
+		navbar 是根组件的子组件，child是navbar的子组件 -->
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script>
+			//1.定义全局组件（作用域隔离）
+			Vue.component('navbar',{
+				template:`<div>
+				<button @click="handleClick()">返回</button>
+				 navbar
+				 <button>主页</button>
+				 <child></child>
+				 <navbarChild></navbarChild>
+				</div>`,
+				methods:{
+					handleClick(){
+						console.log('被点击了');
+					}
+				},
+				//局部组件定义
+				components:{
+					navbarChild:{
+						template:`
+						<div>navbarChild--只能在navbar组件中使用</div>
+						`
+					}
+				}
+				
+			})
+			Vue.component('child',{
+				template:`
+				<div>child组件--全局定义</div>
+				`
+			})
+			Vue.component('siderbar',{
+				template:`
+				<div>
+				siderbar
+				<child></child>
+				</div>
+				`
+			})
+			//root component 根组件
+			let vm= new Vue({
+				el:'#app',
+				data:{
+					
+				}
+			})
+		</script>
+	</body>
+</html>
