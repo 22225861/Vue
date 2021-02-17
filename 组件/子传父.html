@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+		父组件
+		子传父靠事件传递
+		点击按钮 触发payMoney函数，
+		<child @myevent='handleEvent($event)'></child>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script>
+			Vue.component('child',{
+				template:`
+				<div>
+				child组件
+				<button @click=payMoney()>click</button>
+				</div>
+				`,
+				data(){
+					return {
+						childName:'子组件的状态'
+					}
+				},
+				methods:{
+					payMoney(){
+						this.$emit('myevent',this.childName)//分发事件，执行myevent事件 第二个值为参数传递
+						
+					}
+				}
+				
+				
+			})
+			let vm= new Vue({
+				el:'#app',
+				data:{
+					
+				},
+				methods:{
+					handleEvent(ev){
+						console.log('父组件收到钱了'+ev);
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
