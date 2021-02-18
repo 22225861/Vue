@@ -6,16 +6,55 @@
 	</head>
 	<body>
 		<div id="app">
+		<input type="text"  ref="mytext"/>
+		<button @click="handleAdd"> add</button>
 		
+		<child ref='Child'></child>
 		</div>
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 		<script>
+			Vue.component('child',{
+				template:`
+				<div>
+				child
+				</div>
+				`,
+				data(){
+					return{
+						childName:'子组件状态'
+					}
+				},
+				methods:{
+					add(data){
+						console.log('子组件方法 '+data);
+					}
+				}
+				
+				
+			})
 			let vm= new Vue({
 				el:'#app',
 				data:{
 					
+				},
+				methods:{
+					handleAdd(){
+						console.log(this.$refs.mytext.value);
+						// this.$refs.mytext拿到的是input标签
+						// this.$refs.mytext.value拿到的是input标签的值
+						console.log('1111',this.$refs.Child.childName);
+						//调用了子组件的data数据
+						this.$refs.Child.add("孩子听话");
+						//调用了子组件方法
+					}
+						
+						
 				}
 			})
+			/*
+			ref放在标签上，拿到的就是原生标签
+			ref放在组件上，拿到的就是组件对象
+			*/
 		</script>
 	</body>
 </html>

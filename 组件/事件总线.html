@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+		<weixinauthor></weixinauthor>
+		<weixinuser></weixinuser>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script>
+			 var bus=new Vue()//空vue实例，就是事件总线
+			Vue.component('weixinauthor',{
+				template:`
+				<div style="background: red;">
+				我是一个微信公众号作者
+				<input type="text" ref="data">
+				<button @click=handleClick() >发布</button>
+				</div>
+				`,
+				methods:{
+					handleClick(){
+						bus.$emit('weixinmessage',this.$refs.data.value)
+						//点击按钮 发布了 weixinmessage,this.$refs.data.value为订阅到的函数的参数(data)
+					}
+				}
+				
+			})
+			Vue.component('weixinuser',{
+				//合适的位置订阅 bus.$on
+				template:`
+				<div style="backgroud:yellow">
+				我是一个微信用户
+				</div>
+				`,
+				//mounted 生命周期函数
+				mounted() {
+					//bus.$emit发布weixinmessage信息后，执行函数
+					bus.$on('weixinmessage',(data)=>{
+						console.log('收到推送了  '+data);
+					})
+					console.log('生命周期函数--当前组件的dom 创建完成之后，就会调用');
+				}
+				
+			})
+			let vm= new Vue({
+				el:'#app',
+				data:{
+					
+				}
+			})
+		</script>
+	</body>
+</html>
