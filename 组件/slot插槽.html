@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+		<child>
+			<div>
+				aaaaa
+			</div>
+		<!-- child组件会替换child实例，在child里面写的内容不会被显示
+		要想显示需要使用slot插槽在定义组件时，将<slot></slot>放在想要的位置即可 -->
+		
+		</child>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script>
+		
+			Vue.component('child',{
+				template:`
+				<div>
+				child
+				<slot></slot>
+				</div>
+				`
+			})
+			let vm= new Vue({
+				el:'#app',
+				data:{
+				
+				}
+			})
+		</script>
+	</body>
+</html>

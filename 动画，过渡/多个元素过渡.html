@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			/* 过渡风格 */
+		.kerwinfade-enter-active, .kerwinfade-leave-active{
+			transition: all 1.5s; 
+		}
+		.kerwinfade-enter, .kerwinfade-leave-to{
+			opacity: 0;
+			transform: translateX(100px);
+		}
+		
+		/* 关键帧动画 */
+		.kerwinbounce-enter-active{
+			animation: bounce-in .5s;
+		}
+		.kerwinbounce-leave-active{
+			animation: bounce-in .5s reverse;
+		}
+		@keyframes bounce-in{
+			0%{
+				opacity: 0;
+				transform: translateX(100px);
+			}
+			100%{
+				opacity: 1;
+				transform: translateX(0px);
+			}
+		}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+		<button @click="isShow=!isShow">click</button>
+		
+		<transition name="kerwinfade" mode="out-in">
+		<p v-if="isShow" key='1'>111111</p>
+		<p v-else key='10'>22222</p>
+		</transition>
+		<!-- 要想实现一个来一个走动画效果
+		1.给两个元素不一样
+		2.元素一样，设置key,且key值不同
+		 -->
+		 
+		<!-- mode="in-out" 先来再走
+		mode='out-in' 先走再来 -->
+		
+	    <!-- transition包裹需要使用动画的元素
+		transition 只能包含一个元素
+		在transition标签里面添加 name属性 属性值对应css的类选择器名称 -->
+		</div>
+		 <link
+		    rel="stylesheet"
+		    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+		  />
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script>
+			let vm= new Vue({
+				el:'#app',
+				data:{
+					isShow:false
+				}
+			})
+		</script>
+	</body>
+</html>

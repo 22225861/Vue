@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+		<child>
+			<div slot='a'>
+				10
+			</div>
+			<div slot='b'>
+				20
+			</div>
+			<!-- 多个元素需要插入到不同地方时，需给每个child实例内容的元素添加slot=值
+			在child组件中，在<slot></slot>添加name=slot值 -->
+		</child>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script>
+			Vue.component('child',{
+				template:`
+				<div>
+				<slot name='a'></slot>
+				child
+				<slot name='b'></slot>
+				</div>
+				`
+			})
+			let vm= new Vue({
+				el:'#app',
+				data:{
+					
+				}
+			})
+		</script>
+	</body>
+</html>

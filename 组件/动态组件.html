@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<keep-alive>
+			<component :is="who"></component>
+			</keep-alive>
+			
+			<!-- <keep-alive>保留状态，避免重新渲染 -->
+		    <!--在首页input里面输入值，点击其他链接切换时，首页就会删掉，input值就会删除
+			要想保留input值，只需要keep-alive包裹component -->
+			<!-- 在不确定使用哪个组件时，可以先写component标签，在后期确定使用的组件后
+			通过is绑定组件名 -->
+			<!-- <component>元素，动态绑定多个组件到它的is属性 -->
+		<footer>
+			<ul>
+				<li><a @click="who='home'">首页</a></li>
+				<li><a @click="who='list'">列表页</a></li>
+				<li><a @click="who='shopcar'">购物车页面</a></li>
+			</ul>
+		</footer>
+		
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script>
+			
+			let vm= new Vue({
+				el:'#app',
+				data:{
+				 who:'home'	
+				},
+				components:{
+					"home":{
+						template:`
+						<div>home
+						<input>
+						</div>
+						`
+					},
+					"list":{
+						template:`
+						<div>list</div>
+						`
+					},
+					"shopcar":{
+						template:`
+						<div>shopcar</div>
+						`
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
